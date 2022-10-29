@@ -16,69 +16,69 @@
 * 子网 IP 为：`192.168.26.0`
 * 子网掩码为：`255.255.255.0`
 
-![virtual-network-editor](chap1-assets/virtual-network-editor.jpg)
+![virtual-network-editor](chap01-assets/virtual-network-editor.jpg)
 
 ### 1.2 新建虚拟机
 
 * 创建新的虚拟机--> 自定义（高级）
 
-![new-virtual-machine](chap1-assets/new-virtual-machine.jpg)
+![new-virtual-machine](chap01-assets/new-virtual-machine.jpg)
 
 * 虚拟机兼容性选当前 VMWare Workstation 支持最新版，比如 16.2.x
 
-![vm-compatability](chap1-assets/vm-compatability.jpg)
+![vm-compatability](chap01-assets/vm-compatability.jpg)
 
 * 选择稍后安装操作系统
 
-![install-os-later](chap1-assets/install-os-later.jpg)
+![install-os-later](chap01-assets/install-os-later.jpg)
 
 * 选择 Linux --> Red Hat Enterprise Linux 8 64-bit
 
-![guest-os-type](chap1-assets/guest-os-type.jpg)
+![guest-os-type](chap01-assets/guest-os-type.jpg)
 
 * 设置虚拟机名称和位置，比如 RHCE
 
-![vm-name](chap1-assets/vm-name.jpg)
+![vm-name](chap01-assets/vm-name.jpg)
 
 * 设置 CPU
 
-![processor](chap1-assets/processor.jpg)
+![processor](chap01-assets/processor.jpg)
 
 * 设置内存，建议最小为 2G
 
-![memory](chap1-assets/memory.jpg)
+![memory](chap01-assets/memory.jpg)
 
 * 网络类型选择 NAT
 
-![network-type](chap1-assets/network-type.jpg)
+![network-type](chap01-assets/network-type.jpg)
 
 * SCSI 控制器类型选择 LSI Logic
 
-![io-controller-type](chap1-assets/io-controller-type.jpg)
+![io-controller-type](chap01-assets/io-controller-type.jpg)
 
 * 磁盘类型选择常用的 SCSI 接口类型
 
-![disk-type](chap1-assets/disk-type.jpg)
+![disk-type](chap01-assets/disk-type.jpg)
 
 * 创建新虚拟硬盘
 
-![select-disk](chap1-assets/select-disk.jpg)
+![select-disk](chap01-assets/select-disk.jpg)
 
 * 设置硬盘容量
 
-![disk-capacity](chap1-assets/disk-capacity.jpg)
+![disk-capacity](chap01-assets/disk-capacity.jpg)
 
 * 设置磁盘名称
 
-![disk-file](chap1-assets/disk-file.jpg)
+![disk-file](chap01-assets/disk-file.jpg)
 
 * 选择自定义硬件
 
-![customize-hardware](chap1-assets/customize-hardware.jpg)
+![customize-hardware](chap01-assets/customize-hardware.jpg)
 
 * 移除打印机、声卡、USB 控制器。选择 CD/DVD 选项，浏览本地镜像文件（需要提前下载好）
 
-![update-hardware](chap1-assets/update-hardware.jpg)
+![update-hardware](chap01-assets/update-hardware.jpg)
 
 * 点击完成虚拟硬件的配置
 
@@ -86,15 +86,15 @@
 
 * 在虚拟机管理界面中单击**开启此虚拟机**，选择 Install Red Hat Enterprise Linux 8.4
 
-![rhel-install-select](chap1-assets/rhel-install-select.jpg)
+![rhel-install-select](chap01-assets/rhel-install-select.jpg)
 
 * 选择安装过程使用的语言，这里选择简体中文
 
-![linux-install-lang](chap1-assets/linux-install-lang.jpg)
+![linux-install-lang](chap01-assets/linux-install-lang.jpg)
 
 * 点击继续进入到安装信息摘要
 
-![linux-install-summary](chap1-assets/linux-install-summary.jpg)
+![linux-install-summary](chap01-assets/linux-install-summary.jpg)
 
 * 点击**时间和日期**，选择中国境内的上海时间，调整为当前的日期和时间
 * **软件选择**为默认的带GUI的服务器
@@ -103,14 +103,14 @@
   * 将网卡设置为打开状态：此时会自动连接
   * 在配置-->常规里面，勾选自动以优先级连接
 
-![linux-network-ens160](chap1-assets/linux-network-ens160.jpg)
+![linux-network-ens160](chap01-assets/linux-network-ens160.jpg)
 
-![linux-ens160-config](chap1-assets/linux-ens160-config.jpg)
+![linux-ens160-config](chap01-assets/linux-ens160-config.jpg)
 
 * 点击设置管理员密码 root password，这里设置为 `redhat`
 * 点击用户设置-->创建用户，创建普通用户：sadmin 密码为 `redhat`
 
-![linux-create-user](chap1-assets/linux-create-user.jpg)
+![linux-create-user](chap01-assets/linux-create-user.jpg)
 
 * 设置安装路径，选择自定义安装来手动分区；也可以选择自动分区
 
@@ -125,7 +125,7 @@
   >
   > 挂载点：被装载的文件夹
 
-![linux-install-destination](chap1-assets/linux-install-destination.jpg)
+![linux-install-destination](chap01-assets/linux-install-destination.jpg)
 
 * 设置分区
   * 添加根目录挂载点，分区大小为60G
@@ -133,12 +133,12 @@
   * 添加 `swap` 挂载点，分区大小为 2G
   * 点击完成，并接受更改
 
-![linux-mount-root](chap1-assets/linux-mount-root.jpg)
+![linux-mount-root](chap01-assets/linux-mount-root.jpg)
 
-![linux-mount](chap1-assets/linux-mount.jpg)
+![linux-mount](chap01-assets/linux-mount.jpg)
 
 所有配置完成后，点击开始安装，然后等待重启。
 
-![linux-complete](chap1-assets/linux-complete.jpg)
+![linux-complete](chap01-assets/linux-complete.jpg)
 
 [返回](../README.md)
