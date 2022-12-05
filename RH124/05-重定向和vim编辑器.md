@@ -157,3 +157,181 @@ grep来自于英文词组“global search regular expression and print out the l
 8:halt:x:7:0:halt:/sbin:/sbin/halt
 46:sadmin:x:1000:1000:sadmin:/home/sadmin:/bin/bash
 ```
+
+## 2. vim 编辑器
+
+Linux 的一个重要设计原则是：信息和配置设置都存储在基于文本的文件中。Linux 上流行的文本编辑器是 vim，vi 是由 POSIX 标准指定的。
+
+* 轻量级安装 -- vim-minimal 软件包，仅包含核心功能集和基本 vi 命令。可以使用 `vi filename` 打开文件进行编辑
+* 完整安装 -- vim-enhanced 软件包，包含增强功能。可以使用 `vim filename` 打开文件进行编辑
+
+Vim 有几个运行模式：命令模式、扩展命令模式、编辑模式和可视模式。
+
+### 命令模式
+
+第一次打开 Vim，会以命令模式启动，可以用于导航、剪切和粘贴。
+
+#### 复制粘贴
+
+复制：`nyy` 从当前光标所在行（包含），往下复制 n 行
+
+粘贴：`p`
+
+剪切：`ndd` 剪切 n 行，如果不粘贴，则相当于删除 n 行
+
+#### 撤销与重做
+
+撤销更改：`u`
+
+重做更改：`Ctrl + r`
+
+#### 删除字符
+
+`x` 删除光标所在的字符
+
+`nx` 删除光标所在位置往后的 n 个字符
+
+#### 替换字符
+
+`r` 替换光标所在位置的单个字符，替换完退出
+
+`R` 替换光标所在位置的单个字符，并一直保持替换模式，直到完成退出。
+
+#### 导航
+
+`nG` 定位到第 n 行
+
+`G` 定位到最后一行
+
+`gg` 定位到第一行
+
+#### 保存并退出
+
+`ZZ`
+
+### 插入模式
+
+在命令模式状态下输入 i、I、a、A、o、O 等插入命令进入编辑模式
+
+| 快捷键 | 功能描述                                                     |
+| ------ | ------------------------------------------------------------ |
+| `i`    | 在当前光标所在位置插入随后输入的文本，光标后的文本相应向右移动 |
+| `I`    | 在光标所在行的行首插入随后输入的文本，行首是该行的第一个非空白字符，相当于光标移动到行首执行 i 命令 |
+| `o`    | 在光标所在行的下面插入新的一行。光标停在空行首，等待输入文本 |
+| `O`    | 在光标所在行的上面插入新的一行。光标停在空行的行首，等待输入文本 |
+| `a`    | 在当前光标所在位置之后插入随后输入的文本                     |
+| `A`    | 在光标所在行的行尾插入随后输入的文本，相当于光标移动到行尾再执行a命令 |
+
+### 扩展命令模式（末行模式）
+
+#### 查询
+
+输入 `/`，进入查询模式。
+
+* 输入关键字查询 `/keyword` 区分大小写。输入 `Enter` 确认查询结果。
+
+  ![vim-search-keyword](chap05-assets/vim-search-keyword.jpg)
+
+* 输入关键字查询 `/keyword\c` 不区分大小写。输入 `Enter` 确认查询结果。
+
+  * 如果查询结果有多个，按 `n` 显示下一个匹配内容，按 `N` 显示上一个匹配内容。
+
+  ![vim-search-keyword-ignorecase](chap05-assets/vim-search-keyword-ignorecase.jpg)
+
+#### 文件保存、另存为和退出
+
+输入 `:` 进入其他扩展命令模式
+
+* `:w` 保存当前更改
+* `:w /tmp/newfile.txt` 将当前修改保存到 `/tmp/newfile.txt`
+* `:q!` 强制退出，不保存更改
+* `:wq` 退出，保存更改；或者输入 `x`
+
+#### 插入其他内容
+
+* `:r /path/to/file` 在光标所在位置，插入读取的文件内容
+* ![vim-cmd-readfile](chap05-assets/vim-cmd-readfile.jpg)
+
+* `:.! 命令` 将命令的结果覆盖显示到光标所在行。
+* ![vim-cmd-exec](chap05-assets/vim-cmd-exec.jpg)
+
+#### 设置 Vim 参数
+
+* `:set nu` 显示行号
+  * `:数字` 跳转到对应的行
+* `:set paste` 复制的时候保持格式
+* `:set cul` 设置当前所在行高亮；`:set nocul` 取消当前所在行高亮
+* `:set cuc` 设置当前所在列高亮；`:set nocuc` 取消当前所在行高亮
+
+使参数设置永久生效
+
+* 在用户的家目录下，编辑 `.vimrc` -- 针对当前用户；或者编辑 `/etc/vimrc` 针对所有用户
+
+  ```sh
+  set nu
+  set paste
+  set cuc
+  set cul
+  ```
+
+#### 替换操作
+
+* `:s/oldStr/newStr/` 替换当前行（光标所在行）第一个匹配的字符串
+* `:s/oldStr/newStr/g` 替换当前行（光标所在行）所有匹配的字符串
+* `:m,ns/oldStr/newStr/g` 替换从第m行到第n行，所有匹配的字符串
+* `.` 表示当前行，`$` 表示最后一行，`$-1` 表示倒数第二行，`1,$` 表示所有行，`%` 表示所有行
+
+### 视图模式
+
+在命令模式下按 `v` 进入视图模式。
+
+按住 `Shift + v` ，可以选择行文本。
+
+按住 `Ctrl + v` ，可以选择文本块。
+
+* 选择文本块后，按住 y 复制，然后 p 粘贴
+
+![vim-visual-ctrl-v](chap05-assets/vim-visual-ctrl-v.jpg)
+
+#### 多行注释
+
+* `Ctrl + v` 进入视图块，将光标移到需要注释的开头行，然后移动光标选择多行。
+* 输入`I` 也就是 `Shift + i` 在每行开头插入模式，输入 `#`
+* 按 `Esc` 在每行开头插入 #
+
+![vim-visual-comment](chap05-assets/vim-visual-comment.jpg)
+
+#### 取消多行注释
+
+- `Ctrl + v` 进入视图块，将光标移到需要取消注释的开头行，然后移动光标选择多行。
+- 按 `x` 删除 `#` 注释
+
+![vim-visual-uncomment](chap05-assets/vim-visual-uncomment.jpg)
+
+#### 多行缩进
+
+* 设置缩进空格为4 `:set shiftwidth=4`
+* `Ctrl + v` 进入视图块，选中需要缩进的行
+* `Shift + >` 进行duo'hang
+
+### 其他 Vim 操作
+
+* 同时打开多个文件，可以用来比较文件内容
+
+`vim -O file1 file2`
+
+![vim-multi-file](chap05-assets/vim-multi-file.jpg)
+
+`Ctrl + w + w` 在多个屏幕之间切换
+
+### 光标导航
+
+**h**ang back
+
+**j**ump down
+
+**k**ick up
+
+**l**eap forward
+
+[返回](../README.md)
