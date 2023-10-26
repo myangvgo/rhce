@@ -41,3 +41,5 @@
 [3. 使用 tuned 优化系统](./RH134/RH134-03-使用tuned优化系统.md)
 
 [4. ACL](./RH134/RH134-04-ACL.md)
+
+[5. SELinux](./RH134/RH134-05-SELinux.md)
