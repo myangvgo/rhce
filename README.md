@@ -43,3 +43,5 @@
 [4. ACL](./RH134/RH134-04-ACL.md)
 
 [5. SELinux](./RH134/RH134-05-SELinux.md)
+
+[6. 分区管理](./RH134/RH134-06-分区管理.md)
